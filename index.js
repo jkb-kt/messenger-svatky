@@ -29,7 +29,12 @@ app.get('/webhook', function(req, res) {
 })
 
 app.post('/webhook/', function(req, res) {
+    var myarray =[];
+    myarray.push(event.sender.id)
     let messaging_events = req.body.entry[0].messaging
+    // souvisi s dopocitavanim doby
+    //setTimeout(
+
     setInterval(function() {
         for (let i = 0; i < messaging_events.length; i++) {
             let event = messaging_events[i]
@@ -41,6 +46,11 @@ app.post('/webhook/', function(req, res) {
             }
         }
     },2000);
+
+    
+    // dopocitat dobu kdy chci zacit posilat zpravy
+    //, timestamp - 45455)
+
     for (let i = 0; i < messaging_events.length; i++) {
         let event = messaging_events[i]
         let sender = event.sender.id
